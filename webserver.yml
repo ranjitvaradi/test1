@@ -1,0 +1,12 @@
+---
+- hosts: webserver
+  user: test
+  connection: ssh
+  sudo: yes
+  tasks:
+        - name: Installing httpd package
+          yum: name=httpd state=installed
+        - name: copy index.html
+          copy: src=index.html dest=/var/www/html
+        - name: start httpd service
+          service: name=httpd state=restarted
